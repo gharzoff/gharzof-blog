@@ -1,0 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap');
+
+body {
+  font-family: "DM Sans", sans-serif;
+  font-weight: 400; /* o'rtacha qalinlik */
+}
+
+h1, h2, h3 {
+  font-family: "DM Mono", monospace;
+  font-weight: 500;
+}
+
+#nprogress .bar {
+    background: linear-gradient(90deg, #f58529, #dd2a7b, #8134af, #515bd4) !important;
+    height: 3px !important;
+  }
