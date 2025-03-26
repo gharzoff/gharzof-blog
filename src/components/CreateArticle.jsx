@@ -1,10 +1,11 @@
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import ArticleServices from "../services/article";
-import { getArticleStart, getArticleSuccess, postArticleFailure, postArticleStart } from "../slice/article";
+import { postArticleFailure, postArticleStart } from "../slice/article";
 import { ArticleForm } from "../ui";
 import ValidationError from "./ValidationError";
+import Error404 from './Error404'
 
 const CreateArticle = () => {
   const [title, setTitle] = useState("");
@@ -12,6 +13,7 @@ const CreateArticle = () => {
   const [body, setBody] = useState("");
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const { loggedIn } = useSelector(state => state.auth)
 
   const formSubmit = async (e) => {
     e.preventDefault();
@@ -20,9 +22,11 @@ const CreateArticle = () => {
       await ArticleServices.postArticle({ title, description, body });
       navigate("/");
     } catch (error) {
-      dispatch(postArticleFailure(error?.response?.data?.errors));
+      dispatch(postArticleFailure(error?.response?.data?.errors || {'errors': {'Request error': ['Request error 404']}} ));
     }
   };
+
+  if (!loggedIn) return <Error404 />
 
   return (
     <div className="text-center">

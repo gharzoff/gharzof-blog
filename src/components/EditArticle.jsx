@@ -16,8 +16,9 @@ const EditArticle = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const { slug } = useParams();
-    const { auth, article } = useSelector(state => state)
-
+    const auth = useSelector(state => state.auth);
+    const article = useSelector(state => state.article);
+    
     useEffect(() => {
         const getDetailArticle = async () => {
             dispatch(articleDetailStart());
@@ -30,7 +31,7 @@ const EditArticle = () => {
                 setAuthor(article?.author?.username)
             } catch (err) {
                 console.error("Error fetching article:", err);
-                dispatch(articleDetailFailure(err?.response?.statusText));
+                dispatch(articleDetailFailure(err?.response?.statusText || {'errors': {'Request error': ['Request error 404']}} ));
             }
         };
         getDetailArticle();

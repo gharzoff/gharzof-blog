@@ -27,7 +27,7 @@ const Login = () => {
       dispatch(signUserSuccess(user));
       navigate("/");
     } catch (error) {
-      dispatch(signUserFailure(error.response.data));
+      dispatch(signUserFailure(error?.response?.data || {'errors': {'Request error': ['Request error 404']}} ));
     }
   };
 

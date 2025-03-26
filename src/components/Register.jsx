@@ -27,7 +27,7 @@ const Register = () => {
       dispatch(signUserSuccess(user));
       navigate("/");
     } catch (error) {
-      dispatch(signUserFailure(error.response?.data || "Registration failed"));
+      dispatch(signUserFailure(error.response?.data || {'errors': {'Request error': ['Request error 404']}} ));
     }
   };
 
