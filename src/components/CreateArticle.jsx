@@ -3,8 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import ArticleServices from "../services/article";
 import { postArticleFailure, postArticleStart } from "../slice/article";
-import { ArticleForm } from "../ui";
-import ValidationError from "./ValidationError";
+import { ArticleForm, ValidationError } from "../ui";
 import Error404 from './Error404'
 
 const CreateArticle = () => {

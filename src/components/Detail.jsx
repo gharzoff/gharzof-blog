@@ -4,8 +4,8 @@ import { useEffect } from "react";
 import moment from "moment";
 import ArticleServices from "../services/article";
 import { articleDetailFailure, articleDetailStart, articleDetailSuccess } from "../slice/article";
-import { Loader } from "../ui";
 import Error404 from "./Error404";
+import { DetailLoader } from "../ui";
 
 const Detail = () => {
   const { slug } = useParams();
@@ -17,15 +17,16 @@ const Detail = () => {
       dispatch(articleDetailStart());
       try {
         const response = await ArticleServices.getArticle(slug);
-        dispatch(articleDetailSuccess(response.article));
+        setTimeout(()=>dispatch(articleDetailSuccess(response.article)), 300)
       } catch (err) {
         dispatch(articleDetailFailure(err?.response?.data?.errors));
       }
     };
     getDetailArticle();
-  }, [slug, dispatch]);
+  }, [slug]);
 
-  if (isLoading) return <Loader />;
+  if (isLoading) return <DetailLoader />
+  
   if (error) return <Error404 />;
 
   return (
@@ -36,6 +37,7 @@ const Detail = () => {
         <p className="text-muted">
           <span className="fw-bold">Created at:</span> {moment(detail?.createdAt).format("DD MMM, YYYY")}
         </p>
+
         <div className="col-md-6">
           <div className="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
             <div className="col p-4 d-flex flex-column position-static">
@@ -55,6 +57,7 @@ const Detail = () => {
             </div>
           </div>
         </div>
+
         <div>{detail?.body}</div>
       </div>
     </div>

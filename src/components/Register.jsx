@@ -1,11 +1,10 @@
 import { useEffect, useState } from "react";
 import { logo } from "../constants";
-import { Input } from "../ui";
+import { Input, ValidationError } from "../ui";
 import "../styles/index.css";
 import { useDispatch, useSelector } from "react-redux";
 import { resetMessage, signUserFailure, signUserStart, signUserSuccess } from "../slice/auth";
 import AuthService from "../services/auth";
-import ValidationError from "./ValidationError"; // Xato yozilgan nom tuzatildi
 import { useNavigate } from "react-router-dom";
 
 const Register = () => {

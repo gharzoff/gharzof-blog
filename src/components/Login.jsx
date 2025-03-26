@@ -1,10 +1,9 @@
 import { useEffect, useState } from "react";
 import { logo } from "../constants";
-import { Input } from "../ui";
+import { Input, ValidationError } from "../ui";
 import { useDispatch, useSelector } from "react-redux";
 import { signUserStart, signUserFailure, signUserSuccess, resetMessage } from "../slice/auth";
 import AuthService from "../services/auth";
-import ValidationError from "./ValidationError";
 import { useNavigate } from "react-router-dom";
 
 const Login = () => {

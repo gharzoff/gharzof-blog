@@ -1,12 +1,11 @@
 import { Routes, Route } from "react-router-dom";
-import { Main, Login, Register, Navbar, ProgressBar, Detail, CreateArticle, EditArticle, Error404 } from "./components";
+import { Main, Login, Register, Navbar, Detail, CreateArticle, EditArticle, Error404 } from "./components";
 import "./styles/index.css";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import AuthService from "./services/auth";
-import ArticleServices from "./services/article";
 import { signUserSuccess } from "./slice/auth";
-import { getArticleFailure, getArticleStart, getArticleSuccess } from "./slice/article";
+import { ProgressBar } from "./ui";
 
 const App = () => {
   const dispatch = useDispatch();

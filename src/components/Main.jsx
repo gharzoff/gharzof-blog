@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Loader } from "../ui";
 import ArticleServices from "../services/article";
 import { getArticleSuccess, getArticleStart, getArticleFailure } from "../slice/article";
 import ArticleCard from "./ArticleCard";
+import { MainLoader } from '../ui'
 
 const Main = () => {
   const dispatch = useDispatch();
@@ -16,7 +16,7 @@ const Main = () => {
             
       try {
         const response = await ArticleServices.getArticles();
-        dispatch(getArticleSuccess(response.articles));
+        setTimeout(()=>dispatch(getArticleSuccess(response.articles)), 100)
       } catch {
         dispatch(getArticleFailure());
       }
@@ -38,7 +38,7 @@ const Main = () => {
   return (
     <div className="container">
       {isLoading ? (
-        <Loader />
+        <MainLoader />
       ) : (
         <div className="album py-5">
           <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3 mb-2">

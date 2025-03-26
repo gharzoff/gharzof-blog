@@ -7,11 +7,11 @@ const ProgressBar = () => {
   const location = useLocation();
 
   useEffect(() => {
-    NProgress.start(); // Loaderni boshlash
+    NProgress.start();
     setTimeout(() => {
-      NProgress.done(); // Loaderni tugatish
-    }, 100); // 0.5 sekund kutish
-  }, [location.pathname]); // Har safar sahifa o‘zgarsa ishga tushadi
+      NProgress.done();
+    }, 200);
+  }, [location.pathname]);
 
   return null;
 };

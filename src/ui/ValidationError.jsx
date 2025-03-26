@@ -6,7 +6,7 @@ const ValidationError = () => {
   const articleError = useSelector(state => state.article.error);
 
   const errorMessage = useCallback(() => {
-    const error = authError || articleError; // Har ikkala errorni tekshiramiz
+    const error = authError || articleError;
     if (!error || typeof error !== "object") return [];
 
     const errorData = error.errors ? error.errors : error;

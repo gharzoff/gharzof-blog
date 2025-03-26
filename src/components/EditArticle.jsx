@@ -3,9 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import { articleDetailFailure, articleDetailStart, articleDetailSuccess, postArticleFailure, postArticleStart } from "../slice/article";
 import Error404 from './Error404'
-import { ArticleForm } from "../ui";
+import { ArticleForm, ValidationError } from "../ui";
 import ArticleServices from "../services/article";
-import ValidationError from './ValidationError'
 
 const EditArticle = () => {
     const [title, setTitle] = useState("");

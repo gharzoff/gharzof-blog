@@ -1,4 +1,7 @@
 export { default as Input } from './Input'
-export { default as Loader } from './Loader'
 export { default as ArticleForm } from './ArticleForm'
 export { default as TextArea } from './TextArea'
+export { default as DetailLoader } from './DetailLoader'
+export { default as MainLoader } from './MainLoader'
+export { default as ProgressBar } from './ProgressBar'
+export { default as ValidationError } from './ValidationError'
