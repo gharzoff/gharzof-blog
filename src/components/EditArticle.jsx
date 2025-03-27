@@ -49,7 +49,7 @@ const EditArticle = () => {
     };
 
     
-    if (!article || article.error === 'Not Found' || (author && author !== auth.user.username)) {
+    if (!article || article?.error === 'Not Found' || (author && author !== auth?.user?.username)) {
         return <Error404 />;
     }    
     
