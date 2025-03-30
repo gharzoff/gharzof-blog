@@ -1,16 +1,105 @@
-<<<<<<< HEAD
-# blog-app
-=======
-# React + Vite
+# React Blog Application
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Welcome to the **React Blog Application**! 🚀 This is a fully functional blog platform built with React and Redux. The application allows users to create, edit, and delete articles while maintaining a seamless and dynamic user experience.
 
-Currently, two official plugins are available:
+## 📌 Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- 📝 Create, edit, and delete articles
+- 🔐 User authentication (login/register/logout)
+- 🗂️ Redux state management for efficient data handling
+- 📄 Detailed article view with author information
+- ⚡ Smooth navigation using React Router
 
-## Expanding the ESLint configuration
+## 🏗️ Tech Stack
 
-If you are developing a production application, we recommend using TypeScript and enable type-aware lint rules. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
->>>>>>> 45d90d9 (Birinchi commit)
+- **Frontend:** React, Redux, React Router
+- **State Management:** Redux Toolkit
+- **Styling:** Bootstrap
+- **Backend API:** Docker-based API (separate service)
+
+---
+
+## 🚀 Getting Started
+
+### 1️⃣ Clone the Repository
+
+```sh
+git clone https://github.com/your-username/react-blog-app.git
+cd blog-app
+```
+
+### 2️⃣ Install Dependencies
+
+```sh
+npm install
+```
+
+### 3️⃣ Start the Application
+
+```sh
+npm run dev
+```
+
+This will start the development server at `http://localhost:3000`.
+
+### 4️⃣ Connect to the API
+
+Ensure your backend API (Docker-based) is running before using the application.
+
+```sh
+docker-compose up -d
+```
+
+## 📂 Project Structure
+
+```
+react-blog-app/
+│── src/
+│   ├── components/       # Reusable components (Navbar, ArticleCard, etc.)
+│   ├── pages/            # Application pages (Main, Login, Register, etc.)
+│   ├── services/         # API service calls
+│   ├── slice/            # Redux slices (auth, articles)
+│   ├── ui/               # UI components (forms, validation, etc.)
+│   ├── styles/           # Global CSS styles
+│   ├── App.js            # Main application entry point
+│   ├── index.js          # React DOM rendering
+│── public/
+│── package.json
+│── README.md
+```
+
+## 🛠️ Available Scripts
+
+### Run the development server
+
+```sh
+npm run dev
+```
+
+### Build the application
+
+```sh
+npm run build
+```
+
+### Run tests
+
+```sh
+npm test
+```
+
+## 🎯 Future Improvements
+
+- 🔎 Full-text search for articles
+- 📢 Commenting system
+- 🎨 Dark mode support
+- 🔥 Improved article recommendations
+
+## 📜 License
+
+This project is licensed under the MIT License.
+
+---
+
+🌟 **Enjoy building your blog!** If you like this project, don't forget to ⭐️ the repository!
+
