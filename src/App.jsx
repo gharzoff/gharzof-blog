@@ -1,16 +1,41 @@
 import { Routes, Route } from "react-router-dom";
-import { Main, Login, Register, Navbar, Detail, CreateArticle, EditArticle, Error404 } from "./components";
+import {
+  Main,
+  Login,
+  Register,
+  Navbar,
+  Detail,
+  CreateArticle,
+  EditArticle,
+  Error404,
+} from "./components";
 import "./styles/index.css";
 import { useDispatch } from "react-redux";
-import { useEffect } from "react";
+import { useCallback, useEffect } from "react";
 import AuthService from "./services/auth";
+import ArticleServices from "./services/article";
 import { signUserSuccess } from "./slice/auth";
 import { ProgressBar } from "./ui";
+import {
+  getArticleFailure,
+  getArticleStart,
+  getArticleSuccess,
+} from "./slice/article";
 
 const App = () => {
   const dispatch = useDispatch();
 
-  const fetchData = async () => {    
+  const fetchArticles = useCallback(async () => {
+    dispatch(getArticleStart());
+    try {
+      const response = await ArticleServices.getArticles();
+      setTimeout(() => dispatch(getArticleSuccess(response.articles)), 100);
+    } catch {
+      dispatch(getArticleFailure());
+    }
+  }, []);
+
+  const fetchData = useCallback(async () => {
     const token = localStorage.getItem("token");
     if (token) {
       try {
@@ -20,7 +45,8 @@ const App = () => {
         console.error("User authentication failed:", error);
       }
     }
-  };
+    await fetchArticles();
+  }, []);
 
   useEffect(() => {
     fetchData();

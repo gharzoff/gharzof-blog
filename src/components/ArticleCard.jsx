@@ -1,8 +1,27 @@
 import moment from "moment";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import ArticleServices from "../services/article";
+import {
+  getArticleFailure,
+  getArticleStart,
+  getArticleSuccess,
+} from "../slice/article";
 
-const ArticleCard = ({ item, user, deleteHandler }) => {
+const ArticleCard = ({ item, user }) => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const deleteHandler = async (slug) => {
+    try {
+      await ArticleServices.deleteArticle(slug);
+      dispatch(getArticleStart());
+      const response = await ArticleServices.getArticles();
+      dispatch(getArticleSuccess(response.articles));
+    } catch {
+      dispatch(getArticleFailure());
+    }
+  };
 
   return (
     <div className="col">
@@ -20,7 +39,9 @@ const ArticleCard = ({ item, user, deleteHandler }) => {
         </svg>
         <div className="card-body d-flex flex-column">
           <h5 className="card-text">{item?.title || "Untitled"}</h5>
-          <p className="card-text flex-grow-1">{item?.description || "No description available."}</p>
+          <p className="card-text flex-grow-1">
+            {item?.description || "No description available."}
+          </p>
           <div className="d-flex justify-content-between align-items-center card-footer">
             <div className="btn-group">
               <button
@@ -53,7 +74,10 @@ const ArticleCard = ({ item, user, deleteHandler }) => {
               <span className="text-capitalize fw-bold">
                 {item?.author?.username || "Unknown Author"}
               </span>{" "}
-              | {item?.createdAt ? moment(item.createdAt).fromNow() : "Unknown Date"}
+              |{" "}
+              {item?.createdAt
+                ? moment(item.createdAt).fromNow()
+                : "Unknown Date"}
             </small>
           </div>
         </div>
