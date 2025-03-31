@@ -55,8 +55,7 @@ const App = () => {
   return (
     <div>
       <ProgressBar />
-      <Navbar />
-      <div className="container">
+      <div className="container mt-5 mb-5">
         <Routes>
           <Route path="/" element={<Main />} />
           <Route path="/login" element={<Login />} />
@@ -67,6 +66,7 @@ const App = () => {
           <Route path="*" element={<Error404 />} />
         </Routes>
       </div>
+      <Navbar />
     </div>
   );
 };
