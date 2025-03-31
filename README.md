@@ -56,9 +56,10 @@ docker-compose up -d
 react-blog-app/
 │── src/
 │   ├── components/       # Reusable components (Navbar, ArticleCard, etc.)
-│   ├── pages/            # Application pages (Main, Login, Register, etc.)
+│   ├── constants/        # Constants values (Logos, colors, etc.)
 │   ├── services/         # API service calls
-│   ├── slice/            # Redux slices (auth, articles)
+│   ├── slice/            # Redux slices (auth, article)
+│   ├── store/            # Redux store (index)
 │   ├── ui/               # UI components (forms, validation, etc.)
 │   ├── styles/           # Global CSS styles
 │   ├── App.js            # Main application entry point
@@ -66,6 +67,9 @@ react-blog-app/
 │── public/
 │── package.json
 │── README.md
+│.
+|.
+|.
 ```
 
 ## 🛠️ Available Scripts
