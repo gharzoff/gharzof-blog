@@ -24,7 +24,7 @@ Welcome to the **React Blog Application**! 🚀 This is a fully functional blog 
 ### 1️⃣ Clone the Repository
 
 ```sh
-git clone https://github.com/your-username/react-blog-app.git
+git clone https://github.com/abdulghaniarzikul/blog-app.git
 cd blog-app
 ```
 
