@@ -6,7 +6,7 @@ const ArticleForm = props => {
 	const {btnName, title, setTitle, description, setDescription, body, setBody, formSubmit} = props
 
 	return (
-		<form onSubmit={formSubmit}>
+		<form onSubmit={formSubmit} style={{marginBottom: 150}}>
 			<Input label={'Title'} state={title} setState={setTitle} />
 			<TextArea label={'Description'} state={description} setState={setDescription} />
 			<TextArea label={'Body'} state={body} setState={setBody} height={'300px'} />
