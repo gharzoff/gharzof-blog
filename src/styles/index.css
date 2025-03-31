@@ -12,5 +12,5 @@ h1, h2, h3 {
 
 #nprogress .bar {
     background: linear-gradient(90deg, #f58529, #dd2a7b, #8134af, #515bd4) !important;
-    height: 3px !important;
+    height: 5px !important;
   }
