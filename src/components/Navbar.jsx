@@ -24,7 +24,6 @@ const Navbar = () => {
         width: "100%",
         height: "80px",
         zIndex: 1000,
-        background: "rgba(0, 0, 0, 0.85)",
         color: "white",
         backdropFilter: "blur(10px)",
         boxShadow: "0 -2px 10px rgba(0, 0, 0, 0.2)",
