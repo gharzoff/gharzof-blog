@@ -34,7 +34,7 @@ const Login = () => {
     <div className="text-center">
       <main className="form-signin w-25 m-auto">
         <form onSubmit={loginHandler}>
-          <img style={{ opacity: 0.64 }} className="mb-4" src={logo} alt="" width="72" />
+          <img style={{ opacity: 0.64 }} className="mb-4" src={logo} alt="" width="100" />
           <h1 className="h3 mb-3 fw-normal">Please login</h1>
           <ValidationError />
           <Input label="Email address" type="email" state={email} setState={setEmail} />

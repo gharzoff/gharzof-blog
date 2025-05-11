@@ -1,1 +1,1 @@
-export const logo = '/gharz.png'
+export const logo = '/logos.png'

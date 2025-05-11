@@ -34,7 +34,7 @@ const Navbar = () => {
     >
       <div className="d-flex w-100 align-items-center px-3 justify-content-between">
         <Link to="/" className="d-md-inline d-none">
-          <img src={logo} width={72} alt="Logo" />
+          <img src={logo} width={120} alt="Logo" />
         </Link>
         <div className="d-flex gap-3 align-items-center">
           <Link to="/" className="d-md-none btn btn-primary">Home</Link>
