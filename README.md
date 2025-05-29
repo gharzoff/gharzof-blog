@@ -24,8 +24,8 @@ Welcome to the **React Blog Application**! 🚀 This is a fully functional blog 
 ### 1️⃣ Clone the Repository
 
 ```sh
-git clone https://github.com/abdulghaniarzikul/blog-app.git
-cd blog-app
+git clone https://github.com/gharzoff/gharzof-blog.git
+cd gharzof-blog
 ```
 
 ### 2️⃣ Install Dependencies
@@ -40,7 +40,7 @@ npm install
 npm run dev
 ```
 
-This will start the development server at `http://localhost:3000`.
+This will start the development server at `http://localhost:5173`.
 
 ### 4️⃣ Connect to the API
 
@@ -53,7 +53,7 @@ docker-compose up -d
 ## 📂 Project Structure
 
 ```
-react-blog-app/
+react-gharzof-blog/
 │── src/
 │   ├── components/       # Reusable components (Navbar, ArticleCard, etc.)
 │   ├── constants/        # Constants values (Logos, colors, etc.)

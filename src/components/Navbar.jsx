@@ -1,58 +1,92 @@
-import { logo } from "../constants";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { logoutUser } from "../slice/auth";
+import { BASE_URL, logo } from "../constants";
+import { PlusCircle, PersonCircle, BoxArrowRight, BoxArrowInRight, PersonPlus } from "react-bootstrap-icons";
 
 const Navbar = () => {
-  const { loggedIn, user } = useSelector(({ auth }) => auth);
+  const { loggedIn, user } = useSelector((state) => state.auth);
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const logoutHandler = () => {
     dispatch(logoutUser());
-    localStorage.removeItem("token");
+    localStorage.removeItem("access");
+    localStorage.removeItem("refresh");
     navigate("/login");
   };
 
   return (
-    <div
-      className="d-flex flex-column flex-md-row align-items-center border-top"
-      style={{
-        position: "fixed",
-        bottom: 0,
-        left: 0,
-        width: "100%",
-        height: "80px",
-        zIndex: 1000,
-        color: "white",
-        backdropFilter: "blur(10px)",
-        boxShadow: "0 -2px 10px rgba(0, 0, 0, 0.2)",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center"
-      }}
-    >
-      <div className="d-flex w-100 align-items-center px-3 justify-content-between">
-        <Link to="/" className="d-md-inline d-none">
-          <img src={logo} width={120} alt="Logo" />
-        </Link>
-        <div className="d-flex gap-3 align-items-center">
-          <Link to="/" className="d-md-none btn btn-primary">Home</Link>
-          {loggedIn ? (
-            <>
-              <span className="text-white">{user.username}</span>
-              <Link className="btn btn-success" to="/create-article">Create</Link>
-              <button className="btn btn-danger" onClick={logoutHandler}>Logout</button>
-            </>
-          ) : (
-            <>
-              <Link className="btn btn-light" to="/login">Login</Link>
-              <Link className="btn btn-warning" to="/register">Register</Link>
-            </>
-          )}
+    <>
+      <header
+        className="border-top shadow-lg"
+        style={{
+          position: "fixed",
+          bottom: 0,
+          left: 0,
+          width: "100%",
+          zIndex: 1050,
+          height: "70px",
+          display: "flex",
+          alignItems: "center",
+          backdropFilter: "blur(10px)",
+          backgroundColor: "rgba(255, 255, 255, 0.85)",
+        }}
+      >
+        <div className="container d-flex justify-content-between align-items-center px-3">
+          {/* Logo */}
+          <Link to="/" className="navbar-brand d-flex align-items-center gap-2">
+            <img src={logo} alt="Logo" width={115} style={{ objectFit: "contain" }} />
+          </Link>
+
+          {/* Right Side */}
+          <div className="d-flex align-items-center gap-3">
+            {loggedIn ? (
+              <>
+                <Link to="/create" className="btn btn-outline-primary btn-sm d-flex align-items-center gap-1">
+                  <PlusCircle size={18} />
+                  <span className="d-none d-sm-inline">Yaratish</span>
+                </Link>
+
+                <Link to="/profile" className="btn btn-outline-secondary btn-sm d-flex align-items-center gap-1">
+                  {user?.profile_image ? (
+                    <img
+                      src={BASE_URL + user?.profile_image}
+                      alt="Profile"
+                      width={18}
+                      height={18}
+                      className="rounded-circle"
+                    />
+                  ) : (
+                    <PersonCircle size={22} />
+                  )}
+                  <span className="d-none d-sm-inline">{user?.username}</span>
+                </Link>
+
+                <button onClick={logoutHandler} className="btn btn-outline-danger btn-sm d-flex align-items-center gap-1">
+                  <BoxArrowRight size={18} />
+                  <span className="d-none d-sm-inline">Chiqish</span>
+                </button>
+              </>
+            ) : (
+              <>
+                <Link to="/login" className="btn btn-outline-dark btn-sm d-flex align-items-center gap-1">
+                  <BoxArrowInRight size={18} />
+                  <span className="d-none d-sm-inline">Kirish</span>
+                </Link>
+                <Link to="/register" className="btn btn-outline-warning btn-sm d-flex align-items-center gap-1">
+                  <PersonPlus size={18} />
+                  <span className="d-none d-sm-inline">Ro'yxatdan o'tish</span>
+                </Link>
+              </>
+            )}
+          </div>
         </div>
-      </div>
-    </div>
+      </header>
+
+      {/* Kontent to‘qnashmasligi uchun padding */}
+      <div style={{ paddingBottom: "80px" }}></div>
+    </>
   );
 };
 

@@ -1,56 +1,61 @@
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useNavigate } from "react-router-dom";
 import {
+  CreatePost,
+  EditPost,
+  EditProfile,
+  Profile,
+  RequestResetPassword,
+  ResetPassword,
   Main,
   Login,
   Register,
-  Navbar,
   Detail,
-  CreateArticle,
-  EditArticle,
   Error404,
-} from "./components";
+} from "./pages";
+import Navbar from "./components/Navbar";
 import "./styles/index.css";
 import { useDispatch } from "react-redux";
-import { useCallback, useEffect } from "react";
+import { useEffect } from "react";
 import AuthService from "./services/auth";
-import ArticleServices from "./services/article";
 import { signUserSuccess } from "./slice/auth";
 import { ProgressBar } from "./ui";
-import {
-  getArticleFailure,
-  getArticleStart,
-  getArticleSuccess,
-} from "./slice/article";
 
 const App = () => {
   const dispatch = useDispatch();
-
-  const fetchArticles = useCallback(async () => {
-    dispatch(getArticleStart());
-    try {
-      const response = await ArticleServices.getArticles();
-      setTimeout(() => dispatch(getArticleSuccess(response.articles)), 100);
-    } catch {
-      dispatch(getArticleFailure());
-    }
-  }, []);
-
-  const fetchData = useCallback(async () => {
-    const token = localStorage.getItem("token");
-    if (token) {
-      try {
-        const response = await AuthService.getUser();
-        dispatch(signUserSuccess(response.user));
-      } catch (error) {
-        console.error("User authentication failed:", error);
-      }
-    }
-    await fetchArticles();
-  }, []);
+  const navigate = useNavigate();
 
   useEffect(() => {
-    fetchData();
-  }, []);
+    const checkAuth = async () => {
+      const access = localStorage.getItem("access");
+      const refresh = localStorage.getItem("refresh");
+
+      if (access) {
+        try {
+          const response = await AuthService.getUser();
+          dispatch(signUserSuccess(response));
+        } catch {
+          if (refresh) {
+            try {
+              const { access: newAccess } = await AuthService.refreshToken(refresh);
+              localStorage.setItem("access", newAccess);
+              const response = await AuthService.getUser();
+              dispatch(signUserSuccess(response));
+            } catch {
+              localStorage.removeItem("access");
+              localStorage.removeItem("refresh");
+              navigate("/login");
+            }
+          } else {
+            localStorage.removeItem("access");
+            localStorage.removeItem("refresh");
+            navigate("/login");
+          }
+        }
+      }
+    };
+
+    checkAuth();
+  }, [dispatch, navigate]);
 
   return (
     <div>
@@ -60,9 +65,13 @@ const App = () => {
           <Route path="/" element={<Main />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
-          <Route path="/article/:slug" element={<Detail />} />
-          <Route path="/create-article" element={<CreateArticle />} />
-          <Route path="/edit/:slug" element={<EditArticle />} />
+          <Route path="/posts/:id" element={<Detail />} />
+          <Route path="/create" element={<CreatePost />} />
+          <Route path="/edit/:id" element={<EditPost />} />
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/reset-password" element={<RequestResetPassword />} />
+          <Route path="/reset-password/:uid/:token" element={<ResetPassword />} />
+          <Route path="/edit-profile" element={<EditProfile />} />
           <Route path="*" element={<Error404 />} />
         </Routes>
       </div>
