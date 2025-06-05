@@ -11,9 +11,6 @@ import {
 import Error404 from "./Error404";
 import { DetailLoader } from "../ui";
 import { BASE_URL } from "../constants";
-import { Helmet } from "react-helmet";
-
-
 import {
   FaEye,
   FaHeart,
